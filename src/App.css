@@ -1,33 +1,152 @@
-.App {
-  text-align: center;
+/* font-family: 'Montserrat Subrayada', sans-serif; */
+/* font-family: 'Montserrat', sans-serif; */
+*,
+*::before,
+*:after {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+body {
+  color: #fff5f5;
+  font-family: "Montserrat", sans-serif;
+  background: #343434;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wrapper {
+  margin: 20px 40px;
+}
+nav {
+  margin-left: -10px;
+}
+nav ul {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+nav li {
+  list-style: none;
+}
+nav a {
+  text-decoration: none;
+  font-size: 1.2em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  padding: 5px 10px;
+  margin-right: 20px;
+  color: #fff5f5;
+}
+
+nav a:hover,
+nav a:active,
+nav a:focus {
+  border-bottom: 5px #fff5f5 solid;
+}
+
+h1 {
+  font-size: 3em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #ff4856;
+}
+
+/* Child Component Style */
+/* Home */
+.home-body {
+  margin-top: 80px;
+}
+.date-result {
+  margin: 20px 0;
+  opacity: 0.5;
+}
+
+h2 {
+  color: #ff4856;
+}
+
+/* Dropbox Styles */
+select {
+  height: 2em;
+  width: 120px;
+  color: #fff5f5;
+  background: #343434;
+  font-size: 0.8em;
+  line-height: 1.5;
+  border-radius: 2px;
+  border: 2px solid #fff5f560;
+}
+.page-number {
+  float: right;
+  color: #fff5f5;
+}
+button {
+  height: 2em;
+  color: #fff5f590;
+  background-color: transparent;
+  border: none;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1.5;
+  border-radius: 5px;
+}
+/* Rating Stars */
+.starts-rating {
+  font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Movie items grid System */
+.container {
+  margin: 40px 0;
+}
+.grid-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
+  grid-gap: 30px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.grid-items img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 510px) {
+  .grid-items {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+
+  .grid-items img {
+    width: 100%;
+    max-height: 360px;
+    object-fit: contain;
   }
+}
+
+.overview {
+  margin: 10px 0;
+}
+.show-text {
+  color: #679cff;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+/* Child Component Style */
+/* About */
+.about-body h2 {
+  color: #fff967;
+}
+.about-body a {
+  color: #fff5f5;
+}
+.about-body a:hover,
+.about-body a:focus,
+.about-body a:active {
+  color: #679cff;
+}
+
+footer {
+  text-align: center;
 }

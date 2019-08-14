@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+import NotFound from "./NotFound";
+import Footer from "./Footer";
+import "./App.css";
+// import { Redirect } from "react-router";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="wrapper">
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+            </ul>
+          </nav>
+          <h1>Movie Database with React</h1>
+          {/* Our router goes here */}
+          <Switch>
+            <Route exact path="/" component={Home} />
+
+            {/* Does a redirect. */}
+            <Route path={"/about"} exact component={About} />
+
+            {/* Shows an error page. */}
+            <Route path="*" component={NotFound} />
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    );
+  }
 }
-
 export default App;

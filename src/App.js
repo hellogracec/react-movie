@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
 import NotFound from "./NotFound";
 import Footer from "./Footer";
 import "./App.css";
+import { NavLink } from "react-router-dom";
+
 // import { Redirect } from "react-router";
 
 class App extends Component {
@@ -12,16 +14,19 @@ class App extends Component {
     return (
       <Router>
         <div className="wrapper">
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-            </ul>
-          </nav>
+          <div className="nav">
+            <NavLink
+              exact={true}
+              to="/"
+              activeClassName="active"
+              className="nav-link"
+            >
+              Home
+            </NavLink>
+            <NavLink to="/about" activeClassName="active" className="nav-link">
+              about
+            </NavLink>
+          </div>
           <h1>Movie Database with React</h1>
           {/* Our router goes here */}
           <Switch>

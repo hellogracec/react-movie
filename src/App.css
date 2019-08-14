@@ -11,22 +11,20 @@ body {
   font-family: "Montserrat", sans-serif;
   background: #343434;
 }
-
 .wrapper {
   margin: 20px 40px;
 }
-nav {
-  margin-left: -10px;
+
+/* Nav bar */
+/* NavLink Style */
+.nav {
+  margin: 20px 0;
 }
-nav ul {
-  display: flex;
-  margin: 0;
-  padding: 0;
+.active {
+  border-bottom: 4px #fff5f5 solid;
 }
-nav li {
-  list-style: none;
-}
-nav a {
+
+.nav-link {
   text-decoration: none;
   font-size: 1.2em;
   font-family: "Montserrat", sans-serif;
@@ -36,13 +34,14 @@ nav a {
   color: #fff5f5;
 }
 
-nav a:hover,
-nav a:active,
-nav a:focus {
-  border-bottom: 5px #fff5f5 solid;
+.nav-link:hover,
+.nav-link:active,
+.nav-link:focus {
+  border-bottom: 4px #fff5f5 solid;
 }
 
 h1 {
+  margin: 50px 0;
   font-size: 3em;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
@@ -102,14 +101,15 @@ button {
 .grid-items {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
-  grid-gap: 30px;
-  justify-content: center;
+  grid-gap: 20px;
+  justify-content: space-around;
 }
 
 .grid-items img {
   width: 100%;
-  max-height: 300px;
-  object-fit: contain;
+  height: 100%;
+  /* max-height: 300px; */
+  object-fit: cover;
 }
 
 @media (max-width: 510px) {
@@ -124,8 +124,21 @@ button {
   }
 }
 
+.grid-item {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-rows: 300px repeat(2, min-content) 1fr;
+}
+
+.container-overview {
+  max-height: 150px;
+}
 .overview {
   margin: 10px 0;
+  height: 150px;
+  display: block;
+  background: #343434;
+  overflow: scroll;
 }
 .show-text {
   color: #679cff;

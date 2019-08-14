@@ -12,6 +12,7 @@ class About extends React.Component {
             href="http://hellogracecho.com"
             alt="Grace Cho portfolio site"
             target="_blank"
+            rel="noopener noreferrer"
           >
             http://hellogracecho.com
           </a>
@@ -22,6 +23,7 @@ class About extends React.Component {
             href="http://gcho.bcitwebdeveloper.ca"
             alt="Grace Cho BCIT TWD site"
             target="_blank"
+            rel="noopener noreferrer"
           >
             http://gcho.bcitwebdeveloper.ca
           </a>
@@ -34,6 +36,7 @@ class About extends React.Component {
             href="https://www.themoviedb.org/"
             alt="The Movie DB API"
             target="_blank"
+            rel="noopener noreferrer"
           >
             https://www.themoviedb.org/
           </a>

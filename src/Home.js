@@ -100,9 +100,9 @@ class Home extends React.Component {
       .then(data => {
         this.setState({ movies: data.results });
         // console.log(JSON.stringify(data.results));
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
         this.setState({ totalPage: data.total_pages });
-        console.log("Total pages= " + data.total_pages);
+        // console.log("Total pages= " + data.total_pages);
       })
       // Data is not retieved.
       .catch(error => {
@@ -118,7 +118,7 @@ class Home extends React.Component {
       // Data is retrieved.
       .then(data => {
         this.setState({ genres: data.genres });
-        console.log(JSON.stringify(data.genres));
+        // console.log(JSON.stringify(data.genres));
       })
       // Data is not retrieved.
       .catch(error => {
@@ -158,7 +158,7 @@ class Home extends React.Component {
         <div className="container">
           <div className="grid-items">
             {this.state.movies.map((item, index) => (
-              <div key={item.id}>
+              <div className="grid-item" key={item.id}>
                 <img
                   // ? Why can't I direct to public repo?
                   // src="/public/error.png"
@@ -203,15 +203,17 @@ class Home extends React.Component {
                   </span>
                   <span>{item.vote_average}</span>
                 </div>
-                <div className="overview">
-                  <ShowMore
-                    lines={7}
-                    more="Show more"
-                    less="Show less"
-                    anchorClass="show-text"
-                  >
-                    {item.overview}
-                  </ShowMore>
+                <div className="container-overview">
+                  <div className="overview">
+                    <ShowMore
+                      lines={7}
+                      more="Show more"
+                      less="Show less"
+                      anchorClass="show-text"
+                    >
+                      {item.overview}
+                    </ShowMore>
+                  </div>
                 </div>
               </div>
             ))}

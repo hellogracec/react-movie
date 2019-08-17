@@ -175,7 +175,7 @@ class Home extends React.Component {
                   onError={e => {
                     console.log("img cannot be found");
                     e.target.onError = null;
-                    e.target.src = "error.png";
+                    e.target.src = "/movie/error.png";
                   }}
                 />
                 <h2>{item.title}</h2>

@@ -17,14 +17,14 @@ class App extends Component {
             <div className="nav">
               <NavLink
                 exact={true}
-                to="/"
+                to="/movie"
                 activeClassName="active"
                 className="nav-link"
               >
                 HOME
               </NavLink>
               <NavLink
-                to="/about"
+                to="/movie/about"
                 activeClassName="active"
                 className="nav-link"
               >
@@ -38,13 +38,13 @@ class App extends Component {
             </h1>
             {/* Our router goes here */}
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/movie" component={Home} />
 
               {/* Does a redirect. */}
-              <Route path={"/about"} exact component={About} />
+              <Route path={"/movie/about"} exact component={About} />
 
               {/* Shows an error page. */}
-              <Route path="*" component={NotFound} />
+              <Route path="/movie/*" component={NotFound} />
             </Switch>
           </div>
           <footer>

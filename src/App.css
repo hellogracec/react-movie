@@ -159,6 +159,11 @@ button {
   grid-template-rows: 300px 1fr repeat(2, min-content) 160px;
 }
 
+@media (max-width: 510px) {
+  .grid-item {
+    grid-template-rows: 300px 1fr repeat(2, min-content) 170px;
+  }
+}
 .grid-item h2 {
   margin: 0;
 }
@@ -169,7 +174,7 @@ button {
   color: #9a9191;
 }
 .container-overview {
-  max-height: 160px;
+  /* max-height: 160px; */
 }
 .overview {
   margin: 0;

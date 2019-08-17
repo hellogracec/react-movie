@@ -41,16 +41,16 @@ class App extends Component {
               <Route exact path="/movie" component={Home} />
 
               {/* Does a redirect. */}
-              <Route path={"/movie/about"} exact component={About} />
+              <Route path={"/movie/about"} component={About} />
 
               {/* Shows an error page. */}
-              <Route path="/movie/*" component={NotFound} />
+              <Route path={"/movie/*"} component={NotFound} />
             </Switch>
           </div>
           <footer>
             <p>
               <a
-                href="http://hellogracecho.com"
+                href="https://hellogracecho.com"
                 alt="Grace Cho portfolio site"
                 target="_blank"
                 rel="noopener noreferrer"

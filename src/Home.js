@@ -2,6 +2,8 @@ import React from "react";
 import "./App.css";
 import Ratings from "react-ratings-declarative";
 import ShowMore from "react-show-more";
+import Moment from "react-moment";
+import "moment-timezone";
 
 const API_KEY = "1c00c1b12b0e6338ebfa2508463a527b";
 // const BASE_URL =
@@ -130,7 +132,14 @@ class Home extends React.Component {
     return (
       <div className="home-body">
         <p className="date-result">
-          Date Range: {startDate} to {endDate}
+          Date Range |{" "}
+          <Moment format="YYYY MMM DD" withTitle>
+            {startDate}
+          </Moment>{" "}
+          to{" "}
+          <Moment format="YYYY MMM DD" withTitle>
+            {endDate}
+          </Moment>
         </p>
         {/* Genres */}
         <select
@@ -160,16 +169,14 @@ class Home extends React.Component {
             {this.state.movies.map((item, index) => (
               <div className="grid-item" key={item.id}>
                 <img
-                  // ? Why can't I direct to public repo?
-                  // src="/public/error.png"
-                  src={"http://image.tmdb.org/t/p/w185/" + item.poster_path}
+                  src={"http://image.tmdb.org/t/p/w185" + item.poster_path}
                   alt={"poster of " + item.title}
                   // TODO Show alternative img on error
-                  // onError={e => {
-                  // alert("img cannot be found");
-                  // e.target.onError = null;
-                  // e.target.src = "error.png";
-                  // }}
+                  onError={e => {
+                    console.log("img cannot be found");
+                    e.target.onError = null;
+                    e.target.src = "error.png";
+                  }}
                 />
                 <h2>{item.title}</h2>
                 <div className="starts-rating">
@@ -201,17 +208,27 @@ class Home extends React.Component {
                       />
                     </Ratings>
                   </span>
-                  <span>{item.vote_average}</span>
+                  <span>
+                    {item.vote_average === 0 ? "N/A" : item.vote_average}
+                  </span>
+                </div>
+                <div className="realse-date">
+                  In Theaters -{" "}
+                  <Moment format="MMM DD" withTitle>
+                    {item.release_date}
+                  </Moment>
                 </div>
                 <div className="container-overview">
                   <div className="overview">
                     <ShowMore
-                      lines={7}
-                      more="Show more"
+                      lines={8}
+                      more="Click & scroll"
                       less="Show less"
                       anchorClass="show-text"
                     >
-                      {item.overview}
+                      {item.overview === ""
+                        ? "The film information is not available."
+                        : item.overview}
                     </ShowMore>
                   </div>
                 </div>

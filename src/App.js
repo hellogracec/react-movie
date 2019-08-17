@@ -31,7 +31,11 @@ class App extends Component {
                 ABOUT
               </NavLink>
             </div>
-            <h1>Movie Database with React</h1>
+            <h1 className="logo">
+              <span className="logo-1">Graceful</span>
+              <br />
+              <span className="logo-2">Movie Feed</span>
+            </h1>
             {/* Our router goes here */}
             <Switch>
               <Route exact path="/" component={Home} />

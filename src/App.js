@@ -5,6 +5,7 @@ import About from "./About";
 import NotFound from "./NotFound";
 import "./App.css";
 import { NavLink } from "react-router-dom";
+import { Spring } from "react-spring/renderprops";
 
 // import { Redirect } from "react-router";
 
@@ -15,27 +16,48 @@ class App extends Component {
         <div>
           <div className="wrapper">
             <div className="nav">
-              <NavLink
-                exact={true}
-                to="/movie"
-                activeClassName="active"
-                className="nav-link"
-              >
-                HOME
-              </NavLink>
-              <NavLink
-                to="/movie/about"
-                activeClassName="active"
-                className="nav-link"
-              >
-                ABOUT
-              </NavLink>
+              <div>
+                <NavLink
+                  exact={true}
+                  to="/movie"
+                  activeClassName="active"
+                  className="nav-link"
+                >
+                  HOME
+                </NavLink>
+                <NavLink
+                  to="/movie/about"
+                  activeClassName="active"
+                  className="nav-link"
+                >
+                  ABOUT
+                </NavLink>
+              </div>
+              <div>
+                <a
+                  href="http://gcho.bcitwebdeveloper.ca/news"
+                  alt="Graceful news feed"
+                  target="_blank"
+                  className="news-link"
+                >
+                  GRACEFUL
+                  <br />
+                  NEWS FEED
+                </a>
+              </div>
             </div>
-            <h1 className="logo">
-              <span className="logo-1">Graceful</span>
-              <br />
-              <span className="logo-2">Movie Feed</span>
-            </h1>
+
+            <Spring from={{ opacity: 0 }} to={{ opacity: 1 }}>
+              {props => (
+                <div style={props}>
+                  <h1 className="logo">
+                    <span className="logo-1">Graceful</span>
+                    <br />
+                    <span className="logo-2">Movie Feed</span>
+                  </h1>
+                </div>
+              )}
+            </Spring>
             {/* Our router goes here */}
             <Switch>
               <Route exact path="/movie" component={Home} />

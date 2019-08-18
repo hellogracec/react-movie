@@ -4,6 +4,7 @@ import Ratings from "react-ratings-declarative";
 import ShowMore from "react-show-more";
 import Moment from "react-moment";
 import "moment-timezone";
+import { Spring } from "react-spring/renderprops";
 
 const API_KEY = "1c00c1b12b0e6338ebfa2508463a527b";
 // const BASE_URL =
@@ -130,112 +131,128 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="home-body">
-        <p className="date-result">
-          Date Range |{" "}
-          <Moment format="YYYY MMM DD" withTitle>
-            {startDate}
-          </Moment>{" "}
-          to{" "}
-          <Moment format="YYYY MMM DD" withTitle>
-            {endDate}
-          </Moment>
-        </p>
-        {/* Genres */}
-        <select
-          type="text"
-          value={this.state.selectedGenre}
-          onChange={this.handleGenreChange}
+      <div>
+        <Spring
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}
+          config={{ delay: 1000, duration: 1000 }}
         >
-          <option value="" defaultValue="" disabled hidden>
-            Choose Genre
-          </option>
-          {this.state.genres.map((item, index) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-          }
-        </select>
-        {/* Page Button */}
-        <div className="page-number">
-          <button onClick={this.previousPage}>&#10094;</button>
-          &nbsp;{this.state.pageNum} / {this.state.totalPage}&nbsp;
-          <button onClick={this.nextPage}>&#10095;</button>
-        </div>
-        {/* Movie Info */}
-        <div className="container">
-          <div className="grid-items">
-            {this.state.movies.map((item, index) => (
-              <div className="grid-item" key={item.id}>
-                <img
-                  src={"http://image.tmdb.org/t/p/w185" + item.poster_path}
-                  alt={"poster of " + item.title}
-                  // TODO Show alternative img on error
-                  onError={e => {
-                    console.log("img cannot be found");
-                    e.target.onError = null;
-                    e.target.src = "/movie/error.png";
-                  }}
-                />
-                <h2>{item.title}</h2>
-                <div className="starts-rating">
-                  <span>
-                    <Ratings
-                      rating={item.vote_average / 2}
-                      widgetDimensions="1.2em"
-                      widgetSpacings="1px"
-                    >
-                      <Ratings.Widget
-                        widgetRatedColor="#fff967"
-                        widgetEmptyColor="#9A9191"
-                      />
-                      <Ratings.Widget
-                        widgetRatedColor="#fff967"
-                        widgetEmptyColor="#9A9191"
-                      />
-                      <Ratings.Widget
-                        widgetRatedColor="#fff967"
-                        widgetEmptyColor="#9A9191"
-                      />
-                      <Ratings.Widget
-                        widgetRatedColor="#fff967"
-                        widgetEmptyColor="#9A9191"
-                      />
-                      <Ratings.Widget
-                        widgetRatedColor="#fff967"
-                        widgetEmptyColor="#9A9191"
-                      />
-                    </Ratings>
-                  </span>
-                  <span>
-                    {item.vote_average === 0 ? "N/A" : item.vote_average}
-                  </span>
-                </div>
-                <div className="realse-date">
-                  In Theaters -{" "}
-                  <Moment format="MMM DD" withTitle>
-                    {item.release_date}
+          {props => (
+            <div style={props}>
+              <div className="home-body">
+                <p className="date-result">
+                  Date Range |{" "}
+                  <Moment format="YYYY MMM DD" withTitle>
+                    {startDate}
+                  </Moment>{" "}
+                  to{" "}
+                  <Moment format="YYYY MMM DD" withTitle>
+                    {endDate}
                   </Moment>
+                </p>
+                {/* Genres */}
+                <select
+                  type="text"
+                  value={this.state.selectedGenre}
+                  onChange={this.handleGenreChange}
+                >
+                  <option value="" defaultValue="" disabled hidden>
+                    Choose Genre
+                  </option>
+                  {this.state.genres.map((item, index) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
+                  }
+                </select>
+                {/* Page Button */}
+                <div className="page-number">
+                  <button onClick={this.previousPage}>&#10094;</button>
+                  &nbsp;{this.state.pageNum} / {this.state.totalPage}&nbsp;
+                  <button onClick={this.nextPage}>&#10095;</button>
                 </div>
-                <div className="container-overview">
-                  <div className="overview">
-                    <ShowMore
-                      lines={8}
-                      more="Click & scroll"
-                      less="Show less"
-                      anchorClass="show-text"
-                    >
-                      {item.overview === ""
-                        ? "The film information is not available."
-                        : item.overview}
-                    </ShowMore>
+                {/* Movie Info */}
+                <div className="container">
+                  <div className="grid-items">
+                    {this.state.movies.map((item, index) => (
+                      <div className="grid-item" key={item.id}>
+                        <img
+                          src={
+                            "http://image.tmdb.org/t/p/w185" + item.poster_path
+                          }
+                          alt={"poster of " + item.title}
+                          // TODO Show alternative img on error
+                          onError={e => {
+                            console.log("img cannot be found");
+                            e.target.onError = null;
+                            e.target.src = "/movie/error.png";
+                          }}
+                        />
+                        <h2>{item.title}</h2>
+                        <div className="starts-rating">
+                          <span>
+                            <Ratings
+                              rating={item.vote_average / 2}
+                              widgetDimensions="1.2em"
+                              widgetSpacings="1px"
+                            >
+                              <Ratings.Widget
+                                widgetRatedColor="#fff967"
+                                widgetEmptyColor="#9A9191"
+                              />
+                              <Ratings.Widget
+                                widgetRatedColor="#fff967"
+                                widgetEmptyColor="#9A9191"
+                              />
+                              <Ratings.Widget
+                                widgetRatedColor="#fff967"
+                                widgetEmptyColor="#9A9191"
+                              />
+                              <Ratings.Widget
+                                widgetRatedColor="#fff967"
+                                widgetEmptyColor="#9A9191"
+                              />
+                              <Ratings.Widget
+                                widgetRatedColor="#fff967"
+                                widgetEmptyColor="#9A9191"
+                              />
+                            </Ratings>
+                          </span>
+                          <span>
+                            {item.vote_average === 0
+                              ? "N/A"
+                              : item.vote_average}
+                          </span>
+                        </div>
+                        <div className="realse-date">
+                          In Theaters -{" "}
+                          <Moment format="MMM DD" withTitle>
+                            {item.release_date}
+                          </Moment>
+                        </div>
+                        <div className="container-overview">
+                          <div className="overview">
+                            <ShowMore
+                              lines={8}
+                              more="Click & scroll"
+                              less="Show less"
+                              anchorClass="show-text"
+                            >
+                              {item.overview === ""
+                                ? "The film information is not available."
+                                : item.overview}
+                            </ShowMore>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          )}
+        </Spring>
       </div>
     );
   }

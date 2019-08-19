@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import NotFound from "./NotFound";
+import Home from "./components/Home";
+import About from "./components/About";
+import NotFound from "./components/NotFound";
 import "./App.css";
 import { NavLink } from "react-router-dom";
 import { Spring } from "react-spring/renderprops";

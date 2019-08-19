@@ -1,6 +1,6 @@
 {
   "name": "myapp",
-  "homepage": "http://gcho.bcitwebdeveloper.ca/movie",
+  "homepage": "https://gcho.bcitwebdeveloper.ca/movie",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

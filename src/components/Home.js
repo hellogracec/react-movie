@@ -85,7 +85,7 @@ class Home extends React.Component {
   getMovies(selectedGenre, pageNum) {
     this.checkDates();
     const URL =
-      "http://api.themoviedb.org/3/discover/movie?api_key=" +
+      "https://api.themoviedb.org/3/discover/movie?api_key=" +
       API_KEY +
       "&primary_release_date.gte=" +
       startDate +

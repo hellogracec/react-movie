@@ -38,6 +38,7 @@ class App extends Component {
                   href="http://gcho.bcitwebdeveloper.ca/news"
                   alt="Graceful news feed"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="news-link"
                 >
                   GRACEFUL

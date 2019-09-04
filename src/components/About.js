@@ -8,7 +8,7 @@ class About extends React.Component {
       <Spring
         from={{ opacity: 0 }}
         to={{ opacity: 1 }}
-        config={{ delay: 1000, duration: 2000 }}
+        config={{ delay: 1000, duration: 1000 }}
       >
         {props => (
           <div style={props}>

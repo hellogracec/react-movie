@@ -7,16 +7,13 @@ import "moment-timezone";
 import { Spring } from "react-spring/renderprops";
 
 const API_KEY = "1c00c1b12b0e6338ebfa2508463a527b";
-// const BASE_URL =
-//   "http://api.themoviedb.org/3/discover/movie?api_key=" +
-//   API_KEY +
-//   "&primary_release_date.gte=2019-01-01&primary_release_date.lte=2019-05-22" +
-//   "&page=5&with_genres=16";
 
 const GENRES =
   "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
   API_KEY +
   "&language=en-US";
+
+const MOVIE_LINK = "https://www.themoviedb.org/movie/";
 
 let startDate = "";
 let endDate = "";
@@ -30,7 +27,9 @@ class Home extends React.Component {
       genres: [],
       selectedGenre: "",
       pageNum: 1,
-      totalPage: ""
+      totalPage: "",
+      startDate: new Date(),
+      endDate: new Date()
     };
     this.getMovies = this.getMovies.bind(this);
     this.handleGenreChange = this.handleGenreChange.bind(this);
@@ -72,14 +71,16 @@ class Home extends React.Component {
 
   checkDates() {
     var d = new Date();
+    var the_end_month = ("0" + (d.getMonth() + 1)).slice(-2);
+    var the_end_date = ("0" + d.getDate()).slice(-2);
 
-    endDate =
-      d.getFullYear() + "-" + (Number(d.getMonth()) + 1) + "-" + d.getDate();
+    endDate = d.getFullYear() + "-" + the_end_month + "-" + the_end_date;
 
     d.setDate(d.getDate() - 60);
+    var the_start_month = ("0" + (d.getMonth() + 1)).slice(-2);
+    var the_start_date = ("0" + d.getDate()).slice(-2);
 
-    startDate =
-      d.getFullYear() + "-" + (Number(d.getMonth()) + 1) + "-" + d.getDate();
+    startDate = d.getFullYear() + "-" + the_start_month + "-" + the_start_date;
   }
 
   getMovies(selectedGenre, pageNum) {
@@ -87,14 +88,15 @@ class Home extends React.Component {
     const URL =
       "https://api.themoviedb.org/3/discover/movie?api_key=" +
       API_KEY +
-      "&primary_release_date.gte=" +
-      startDate +
-      "&primary_release_date.lte=" +
-      endDate +
       "&page=" +
       pageNum +
       "&with_genres=" +
-      selectedGenre;
+      selectedGenre +
+      "&primary_release_date.gte=" +
+      startDate +
+      "&primary_release_date.lte=" +
+      endDate;
+    // console.log(URL);
 
     // Request and wait for data from remote server.
     fetch(URL)
@@ -135,7 +137,7 @@ class Home extends React.Component {
         <Spring
           from={{ opacity: 0 }}
           to={{ opacity: 1 }}
-          config={{ delay: 1000, duration: 2000 }}
+          config={{ delay: 1000, duration: 1000 }}
         >
           {props => (
             <div style={props}>
@@ -177,18 +179,26 @@ class Home extends React.Component {
                   <div className="grid-items">
                     {this.state.movies.map((item, index) => (
                       <div className="grid-item" key={item.id}>
-                        <img
-                          src={
-                            "http://image.tmdb.org/t/p/w185" + item.poster_path
-                          }
-                          alt={"poster of " + item.title}
-                          // TODO Show alternative img on error
-                          onError={e => {
-                            console.log("img cannot be found");
-                            e.target.onError = null;
-                            e.target.src = "/movie/error.png";
-                          }}
-                        />
+                        <a
+                          href={MOVIE_LINK + item.id}
+                          alt={item.title}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            src={
+                              "https://image.tmdb.org/t/p/w185" +
+                              item.poster_path
+                            }
+                            alt={"poster of " + item.title}
+                            // TODO Show alternative img on error
+                            onError={e => {
+                              console.log("img cannot be found");
+                              e.target.onError = null;
+                              e.target.src = "/movie/error.png";
+                            }}
+                          />
+                        </a>
                         <h2>{item.title}</h2>
                         <div className="starts-rating">
                           <span>
